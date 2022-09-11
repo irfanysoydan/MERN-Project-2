@@ -2,9 +2,11 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import bodypParser from "body-parser";
+import studentRoutes from "./routes/student.js";
 
 const app = express();
 
+app.use("/students", studentRoutes);
 app.use(bodypParser.json({limit:"20mb", extended:true}));
 app.use(bodypParser.urlencoded({limit:"20mb", extended:true}));
 
