@@ -6,11 +6,12 @@ import studentRoutes from "./routes/student.js";
 
 const app = express();
 
-app.use("/students", studentRoutes);
 app.use(bodypParser.json({limit:"20mb", extended:true}));
 app.use(bodypParser.urlencoded({limit:"20mb", extended:true}));
 
 app.use(cors());
+app.use("/students", studentRoutes);
+
 
 const CONNECTION_URL = "mongodb+srv://darkley:3152@cluster0.sqc84we.mongodb.net/?retryWrites=true&w=majority";
 
@@ -20,4 +21,4 @@ mongoose.connect(CONNECTION_URL, {
     useNewUrlParser: true, useUnifiedTopology:true
 }).then(() => app.listen(PORT, ()=> 
     console.log(`Connection running on port: ${PORT}`)
-)).catch((err) => console.log(err.message))
+)).catch((err) => console.log(err.message)) 
